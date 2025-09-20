@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadGen | Get Started Today</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 0.3s;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #4361ee;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 12px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        /* Hero Text */
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 30px;
+        }
+        
+        .benefits {
+            margin: 30px 0;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .benefit i {
+            color: #4361ee;
+            margin-right: 15px;
+            font-size: 1.4rem;
+            background: rgba(67, 97, 238, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            min-width: 300px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.8s;
+        }
+        
+        .form-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2d3748;
+            text-align: center;
+        }
+        
+        .form-subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 22px;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        label {
+            display: block;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+        
+        input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4361ee;
+            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+        }
+        
+        input.error {
+            border-color: #e53e3e;
+        }
+        
+        .error-message {
+            color: #e53e3e;
+            font-size: 14px;
+            margin-top: 6px;
+            display: none;
+        }
+        
+        button {
+            width: 100%;
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 18px 20px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .privacy {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #718096;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards 1.8s;
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(to right, #48bb78, #38a169);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        
+        /* Success Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .success-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .modal-overlay.active .success-modal {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .modal-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #48bb78;
+            animation: bounce 1s ease;
+        }
+        
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        
+        .modal-text {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        .modal-subtext {
+            color: #a0aec0;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .modal-button {
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .modal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-button i {
+            font-size: 24px;
+        }
+        
+        /* Red notification badge */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4d4d;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 450px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(to right, #4361ee, #3a0ca3);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chatbot-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .bot-message {
+            background: #f1f5f9;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .user-message {
+            background: #4361ee;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        
+        .chatbot-input button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #4361ee;
+            color: white;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 0;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quick-reply {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .quick-reply:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            
+            .benefit {
+                justify-content: center;
+            }
+            
+            .form-container {
+                width: 100%;
+                padding: 30px 25px;
+            }
+            
+            .success-modal {
+                padding: 30px 20px;
+            }
+            
+            .modal-title {
+                font-size: 24px;
+            }
+            
+            .modal-text {
+                font-size: 16px;
+            }
+            
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chatbot-window {
+                width: 320px;
+                right: -20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .form-title {
+                font-size: 24px;
+            }
+            
+            .success-modal {
+                width: 95%;
+                padding: 25px 15px;
+            }
+            
+            .modal-icon {
+                font-size: 50px;
+            }
+            
+            .modal-title {
+                font-size: 22px;
+            }
+            
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+                right: -30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                LeadGen
+            </div>
+            <p class="tagline">Turn your visitors into loyal customers with our simple solution</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="hero-text">
+                <h1>Turn <span style="color: #4361ee;">Visitors</span> Into Loyal Customers</h1>
+                <p>Join thousands of satisfied customers who have boosted their conversion rates with our proven approach.</p>
+                
+                <div class="benefits">
+                    <div class="benefit" style="animation: fadeIn 0.8s ease forwards 1s;">
+                        <i class="fas fa-check"></i>
+                        <span>Get qualified leads delivered to your inbox</span>
+                    </div>
+                    <div class="benefit" style="animation: fadeIn 0.8s ease forwards 1.2s;">
+                        <i class="fas fa-check"></i>
+                        <span>No technical skills required</span>
+                    </div>
+                    <div class="benefit" style="animation: fadeIn 0.8s ease forwards 1.4s;">
+                        <i class="fas fa-check"></i>
+                        <span>See results in the first 30 days</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h2 class="form-title">Get Started Now</h2>
+                <p class="form-subtitle">Join our community today</p>
+                
+                <form id="leadForm">
+                    <div class="form-group" style="animation: fadeIn 0.8s ease forwards 1.1s;">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your full name">
+                        <div class="error-message" id="nameError">Please enter your name</div>
+                    </div>
+                    
+                    <div class="form-group" style="animation: fadeIn 0.8s ease forwards 1.3s;">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address">
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group" style="animation: fadeIn 0.8s ease forwards 1.5s;">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Your phone number">
+                        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                    </div>
+                    
+                    <button type="submit" style="animation: fadeIn 0.8s ease forwards 1.7s;">Join Now</button>
+                </form>
+                
+                <p class="privacy">
+                    <i class="fas fa-lock"></i> We respect your privacy. No spam, ever.
+                </p>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> Thank you! We've received your information.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="success-modal">
+            <div class="modal-icon">🎉</div>
+            <h2 class="modal-title">Thank you for joining!</h2>
+            <p class="modal-text">We'll be in touch soon with exciting updates and offers.</p>
+            <p class="modal-subtext"><i class="fas fa-lock"></i> We respect your privacy. No spam.</p>
+            <button class="modal-button" id="closeModal">Got It!</button>
+        </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-button" id="chatbotButton">
+            <i class="fas fa-comment"></i>
+            <div class="notification-badge">1</div>
+        </div>
+        
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: white; display: flex; justify-content: center; align-items: center; margin-right: 12px;">
+                    <i class="fas fa-robot" style="color: #4361ee; font-size: 20px;"></i>
+                </div>
+                <div>
+                    <h3>LeadGen Assistant</h3>
+                    <p style="font-size: 12px; opacity: 0.8;">Online • Ready to help</p>
+                </div>
+            </div>
+            
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Messages will be added here by JavaScript -->
+            </div>
+            
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('leadForm');
+            const successMessage = document.getElementById('successMessage');
+            const successModal = document.getElementById('successModal');
+            const closeModal = document.getElementById('closeModal');
+            const notificationBadge = document.querySelector('.notification-badge');
+            
+            // Close modal function
+            closeModal.addEventListener('click', function() {
+                successModal.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside
+            successModal.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    successModal.classList.remove('active');
+                }
+            });
+            
+            // Animate form elements sequentially
+            const formGroups = document.querySelectorAll('.form-group');
+            formGroups.forEach((group, index) => {
+                group.style.animationDelay = `${1.1 + (index * 0.2)}s`;
+            });
+            
+            document.querySelector('button').style.animationDelay = '1.7s';
+            
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset previous errors
+                const errorElements = document.querySelectorAll('.error-message');
+                errorElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.classList.remove('error');
+                });
+                
+                // Validate form
+                let isValid = true;
+                
+                // Name validation
+                const nameInput = document.getElementById('name');
+                if (!nameInput.value.trim()) {
+                    showError(nameInput, 'nameError');
+                    isValid = false;
+                }
+                
+                // Email validation
+                const emailInput = document.getElementById('email');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailInput.value)) {
+                    showError(emailInput, 'emailError');
+                    isValid = false;
+                }
+                
+                // Phone validation (basic)
+                const phoneInput = document.getElementById('phone');
+                if (!phoneInput.value.trim() || phoneInput.value.replace(/\D/g, '').length < 10) {
+                    showError(phoneInput, 'phoneError');
+                    isValid = false;
+                }
+                
+                if (isValid) {
+                    // Form is valid - show success message
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    document.querySelector('.privacy').style.display = 'none';
+                    
+                    // Show modal after a short delay
+                    setTimeout(function() {
+                        successModal.classList.add('active');
+                    }, 1000);
+                    
+                    // In a real application, you would send the form data to a server here
+                    console.log('Form submitted with:', {
+                        name: nameInput.value,
+                        email: emailInput.value,
+                        phone: phoneInput.value
+                    });
+                    
+                    // Reset form after successful submission (for demo purposes)
+                    setTimeout(() => {
+                        form.reset();
+                        form.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        document.querySelector('.privacy').style.display = 'block';
+                    }, 5000);
+                }
+            });
+            
+            function showError(input, errorId) {
+                input.classList.add('error');
+                document.getElementById(errorId).style.display = 'block';
+                
+                // Add shake animation to error field
+                input.animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-5px)' },
+                    { transform: 'translateX(5px)' },
+                    { transform: 'translateX(0)' }
+                ], {
+                    duration: 300,
+                    iterations: 3
+                });
+            }
+            
+            // Chatbot functionality
+            const chatbotButton = document.getElementById('chatbotButton');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const chatbotMessages = document.getElementById('chatbotMessages');
+            const chatbotInput = document.getElementById('chatbotInput');
+            const sendMessageButton = document.getElementById('sendMessage');
+            
+            let chatbotOpen = false;
+            
+            // Open/close chatbot
+            chatbotButton.addEventListener('click', function() {
+                chatbotOpen = !chatbotOpen;
+                if (chatbotOpen) {
+                    chatbotWindow.style.display = 'flex';
+                    addBotMessage("Hi there! 👋 I'm here to help you get started. What would you like to know?");
+                    // Hide notification badge when chatbot is opened
+                    notificationBadge.style.display = 'none';
+                } else {
+                    chatbotWindow.style.display = 'none';
+                }
+            });
+            
+            // Send message on button click
+            sendMessageButton.addEventListener('click', function() {
+                sendMessage();
+            });
+            
+            // Send message on Enter key
+            chatbotInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            function sendMessage() {
+                const message = chatbotInput.value.trim();
+                if (message) {
+                    addUserMessage(message);
+                    chatbotInput.value = '';
+                    
+                    // Bot response with delay
+                    setTimeout(() => {
+                        respondToMessage(message);
+                    }, 1000);
+                }
+            }
+            
+            function addUserMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message user-message';
+                messageDiv.textContent = text;
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            function addBotMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message bot-message';
+                messageDiv.textContent = text;
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                
+                // Add quick replies after welcome message
+                addQuickReplies();
+            }
+            
+            function respondToMessage(message) {
+                const lowerMessage = message.toLowerCase();
+                
+                // Handle spelling variations using fuzzy matching
+                if (matches(lowerMessage, ['hello', 'hi', 'hey', 'hola', 'howdy', 'hi there', 'hey there'])) {
+                    addBotMessage("Hello! 😊 Thanks for stopping by. I'm here to help you get started with our service. What would you like to know?");
+                } 
+                else if (matches(lowerMessage, ['what', 'this', 'about', 'service', 'offer', 'provide', 'do'])) {
+                    addBotMessage("We help people like you get access to fresh offers and updates. Just pop your name, email, and phone in the form to get started!");
+                }
+                else if (matches(lowerMessage, ['why', 'benefit', 'advantage', 'sign up', 'join', 'reason'])) {
+                    addBotMessage("Great question! You'll be the first to get our best updates, deals, and insider perks. Plus, it's free and takes less than a minute. Want to give it a try?");
+                }
+                else if (matches(lowerMessage, ['spam', 'privacy', 'security', 'safe', 'data', 'information'])) {
+                    addBotMessage("Totally understand 👍 We respect your privacy — no spam, ever. Just useful updates you'll actually care about.");
+                }
+                else if (matches(lowerMessage, ['how', 'work', 'process', 'procedure', 'operate', 'function'])) {
+                    addBotMessage("It's simple! Just fill out the form with your name, email, and phone. We'll then send you personalized updates and offers tailored just for you.");
+                }
+                else if (matches(lowerMessage, ['name', 'email', 'phone', 'number', 'contact', 'info', 'information'])) {
+                    addBotMessage("I see you're curious about the info we need. We just ask for basics so we can personalize your experience and keep you updated. Ready to fill out the form?");
+                }
+                else if (matches(lowerMessage, ['thank', 'thanks', 'appreciate', 'grateful'])) {
+                    addBotMessage("You're welcome! 😊 Is there anything else I can help you with?");
+                }
+                else if (matches(lowerMessage, ['bye', 'goodbye', 'see you', 'later', 'exit', 'quit'])) {
+                    addBotMessage("Thanks for chatting! Feel free to reach out if you have more questions. Have a great day! 👋");
+                }
+                else if (matches(lowerMessage, ['help', 'support', 'assist', 'problem', 'issue'])) {
+                    addBotMessage("I'm here to help! You can ask me about our service, how to sign up, or any other questions you might have. What would you like to know?");
+                }
+                else if (matches(lowerMessage, ['price', 'cost', 'fee', 'charge', 'money', 'payment'])) {
+                    addBotMessage("The best part is that signing up is completely free! You'll get access to exclusive offers and updates at no cost.");
+                }
+                else {
+                    addBotMessage("I'd love to help you with that! The best way to get started is to fill out the quick form with your name, email, and phone. Would you like to do that now?");
+                }
+                
+                // Add quick replies
+                addQuickReplies();
+            }
+            
+            // Fuzzy matching function to handle spelling variations
+            function matches(input, keywords) {
+                for (const keyword of keywords) {
+                    // Direct match
+                    if (input.includes(keyword)) return true;
+                    
+                    // Handle common misspellings and variations
+                    const variations = getVariations(keyword);
+                    for (const variation of variations) {
+                        if (input.includes(variation)) return true;
+                    }
+                }
+                return false;
+            }
+            
+            // Generate common spelling variations
+            function getVariations(word) {
+                const variations = [];
+                
+                // Common misspellings map
+                const commonMisspellings = {
+                    'hello': ['hallo', 'helloo', 'helllo', 'helo'],
+                    'service': ['servise', 'servce', 'srvice', 'servive'],
+                    'privacy': ['privasy', 'privcy', 'privecy', 'privasy'],
+                    'information': ['infromation', 'infomation', 'informtion', 'infromtion']
+                };
+                
+                // Add from common misspellings map
+                if (commonMisspellings[word]) {
+                    variations.push(...commonMisspellings[word]);
+                }
+                
+                // Add common suffixes/prefixes
+                variations.push(word + 's'); // plural
+                variations.push(word + 'ing'); // gerund
+                
+                return variations;
+            }
+            
+            function addQuickReplies() {
+                // Clear any existing quick replies
+                const existingReplies = document.querySelectorAll('.quick-replies');
+                existingReplies.forEach(reply => reply.remove());
+                
+                const quickReplies = document.createElement('div');
+                quickReplies.className = 'quick-replies';
+                
+                const replies = [
+                    "What is this about?",
+                    "Why should I sign up?",
+                    "How does it work?",
+                    "I'm ready to join!"
+                ];
+                
+                replies.forEach(reply => {
+                    const replySpan = document.createElement('span');
+                    replySpan.className = 'quick-reply';
+                    replySpan.textContent = reply;
+                    replySpan.addEventListener('click', function() {
+                        addUserMessage(reply);
+                        setTimeout(() => {
+                            respondToMessage(reply);
+                        }, 500);
+                    });
+                    quickReplies.appendChild(replySpan);
+                });
+                
+                chatbotMessages.appendChild(quickReplies);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            // Add initial welcome message when chatbot is opened for the first time
+            setTimeout(() => {
+                if (!chatbotOpen) {
+                    chatbotButton.animate([
+                        { transform: 'scale(1)' },
+                        { transform: 'scale(1.2)' },
+                        { transform: 'scale(1)' }
+                    ], {
+                        duration: 1000,
+                        iterations: 3
+                    });
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
